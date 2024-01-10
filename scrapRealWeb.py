@@ -2,12 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 import time
 
-print("put some string that youare unfamiliar with")
+print("enter the skill that you want to search job for: ")
+job_search = input(">")
+print("put some string that youare unfamiliar with: ")
 unfamiliar_skill = input(">")
 print(f'Filtering out {unfamiliar_skill}')
 #to get specific info from a website
 def find_jobs():
-    html_text = requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=&searchTextText=&txtKeywords=python&txtLocation=').text
+    html_text = requests.get(f'https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=&searchTextText=&txtKeywords={job_search}&txtLocation=').text
     soup = BeautifulSoup(html_text,'lxml')
     jobs = soup.find_all('li',class_ = 'clearfix job-bx wht-shd-bx')
     #enumerate allows us to iterate over the index of job list and also over the job content
